@@ -1,0 +1,434 @@
+/* --- BÀI 2: ĐỊNH DẠNG VỚI CSS --- */
+
+/* 1. TỔNG THỂ: Google Fonts và Biến màu */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #0071e3; /* Màu xanh của Apple */
+    --dark-bg: #121212;
+    --glass-bg: rgba(20, 20, 20, 0.6);
+    --card-bg: #1e1e1e;
+    --text-color: #f5f5f7;
+    --text-secondary: #a0a0a5;
+    --container-width: 1100px;
+}
+
+/* Reset cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; text-align: center; margin-bottom: 2rem; }
+h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 2. LAYOUT: Header, Sections, Footer */
+
+/* HEADER & GLASSMORPHISM */
+header {
+    width: 100%;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.4s ease;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    font-weight: 400;
+    position: relative;
+    padding: 5px 0;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+/* 5. TƯƠNG TÁC: Hiệu ứng hover cho link */
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Hiệu ứng khi header được cuộn (dành cho Bài 3) */
+header.scrolled {
+    background-color: #000;
+}
+
+
+/* HERO SECTION */
+#hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    min-height: 90vh;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-content h1 {
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+}
+
+.cta-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* 5. TƯƠNG TÁC: Hiệu ứng hover cho nút */
+.cta-button:hover {
+    transform: scale(1.05);
+    background-color: #0077ff;
+}
+
+/* FEATURES SECTION */
+#features {
+    padding: 4rem 0;
+}
+
+.features-grid {
+    display: grid;
+    /* Hiển thị 2 cột trên desktop vì bạn có 4 tính năng, trông sẽ cân đối hơn */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.feature-item {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature-item h3 {
+    margin-top: 1rem;
+}
+
+.feature-item p {
+    color: var(--text-secondary);
+    text-align: justify; /* Thêm dòng này để căn đều 2 bên */
+}
+
+.feature-icon {
+        width: 80%; /* Giảm kích thước ảnh xuống còn 80% của thẻ cha */
+    max-height: 300px; /* Giới hạn chiều cao tối đa */
+    object-fit: contain; /* Đảm bảo ảnh không bị cắt xén, giữ tỉ lệ */
+    margin: 1rem auto 0 auto; /* Căn giữa ảnh và thêm khoảng cách phía trên */
+    border-radius: 8px; /* Giữ bo tròn nếu có */
+     order: -1;
+
+}
+
+
+/* GALLERY SECTION */
+#gallery {
+    padding: 4rem 0;
+}
+
+#main-image {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    border-radius: 15px;
+}
+
+.gallery-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+}
+
+/* Class 'active' sẽ được thêm bằng JS */
+.thumbnail.active {
+    border-color: var(--primary-color);
+}
+
+/* FOOTER */
+footer {
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 2rem;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-secondary);
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    margin-left: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* 4. RESPONSIVE */
+
+/* Tablet (<= 768px) */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+
+    #hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    /* Yêu cầu: Các tính năng hiển thị 2 cột (đã mặc định ở desktop nên không cần đổi) */
+}
+
+/* Mobile (<= 480px) */
+@media (max-width: 480px) {
+    body {
+        /* Ẩn thanh menu chính trên mobile */
+        /* Giao diện hamburger sẽ được thêm vào sau nếu cần */
+        /* Đây là yêu cầu "thay đổi giao diện" */
+        padding-top: 60px; /* Thêm padding để nội dung không bị header che mất */
+    }
+
+    header .container {
+        justify-content: space-between;
+    }
+
+    nav {
+        /* Trong bài thi thực tế, bạn sẽ tạo một nút hamburger và ẩn/hiện menu này. */
+        /* Ở đây, ta tạm thời ẩn nó đi để đáp ứng yêu cầu. */
+        display: none;
+    }
+
+    #hero {
+        min-height: auto;
+    }
+
+    /* Yêu cầu: Các tính năng hiển thị 1 cột */
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    footer .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+}
+/* --- CSS CHO PHẦN SẢN PHẨM KHÁC --- */
+
+#products {
+    padding: 4rem 0;
+}
+
+.products-grid {
+    display: grid;
+    /* Hiển thị 3 sản phẩm trên một hàng ở desktop */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; /* Khoảng cách giữa các sản phẩm */
+}
+
+.product-card {
+    background-color: var(--card-bg, #1e1e1e); /* Dùng màu card đã có */
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-image-container {
+    background-color: #fff; /* Nền trắng để ảnh sản phẩm nổi bật */
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Giúp các box ảnh có chiều cao bằng nhau */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image-container img {
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.product-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color, #0071e3); /* Dùng màu chính */
+    margin-bottom: 1.5rem;
+}
+
+/* RESPONSIVE CHO PHẦN SẢN PHẨM */
+@media (max-width: 768px) {
+    .products-grid {
+        /* Hiển thị 1 sản phẩm 1 hàng trên tablet và mobile */
+        grid-template-columns: 1fr;
+    }
+}
+/* --- CHỈNH SỬA CHO HERO SECTION --- */
+
+/* Loại bỏ nền trắng và thêm hiệu ứng glow cho ảnh Hero */
+.hero-image img {
+    background: none; /* Đảm bảo không có nền trắng */
+    border-radius: 0; /* Đảm bảo không có bo góc từ ảnh gốc */
+    box-shadow: 0 0 40px rgba(0, 113, 227, 0.5); /* Hiệu ứng ánh sáng xanh */
+    /* Nếu bạn dùng css1.css, có thể dùng màu glow của gradient: */
+    /* box-shadow: 0 0 40px var(--glow-color); */
+    transition: transform 0.5s ease;
+}
+
+.hero-image img:hover {
+    transform: scale(1.03); /* Phóng to nhẹ khi hover */
+}
+
+/* Định dạng cho giá sản phẩm trong Hero */
+.product-price-hero {
+    display: block; /* Đảm bảo nó chiếm một dòng riêng */
+    font-size: 1.8rem; /* Cỡ chữ lớn hơn */
+    font-weight: 700;
+    color: var(--primary-color, #0071e3); /* Màu nhấn chính */
+    margin: 1.5rem 0 2rem 0; /* Khoảng cách trên, dưới */
+}
+
+/* Điều chỉnh lại khoảng cách nút nếu cần */
+.hero-content .cta-button {
+    margin-top: 0; /* Đảm bảo không có margin dư thừa */
+}
+
+/* Điều chỉnh thêm cho Hero Section tổng thể để ảnh và chữ gần nhau hơn */
+#hero {
+    /* Đảm bảo flexbox luôn ở giữa */
+    align-items: center; 
+    /* Có thể tăng khoảng cách nếu ảnh lớn */
+    /* gap: 4rem; */ 
+}
+/* --- CSS CHO HIỆU ỨNG ANIMATION KHI CUỘN (BÀI 3.3) --- */
+
+/* Trạng thái ban đầu của các thẻ tính năng: mờ và bị đẩy xuống dưới */
+.feature-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Trạng thái sau khi được JS thêm class '.visible': hiện rõ và trở về vị trí cũ */
+.feature-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
